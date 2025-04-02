@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Garagem Inteligente</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos para ocultar os veículos inicialmente */
+        .veiculo-container {
+            display: none;
+        }
+
+        /* Estilos para exibir o veículo selecionado */
+        .veiculo-container.ativo {
+            display: block;
+        }
+
+        /* Estilos para os campos de criação e edição */
+        .edicao-veiculo {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .edicao-veiculo label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .edicao-veiculo input[type="text"],
+        .edicao-veiculo input[type="number"],
+        .edicao-veiculo input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho do input */
+        }
+
+        /* Estilos para botões */
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Estilos para a seção de ações */
+        .acoes-veiculo {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Estilos para a barra de aceleração */
+        .barra-aceleracao {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .barra-progresso {
+            height: 100%;
+            width: 0;
+            background-color: #5cb85c;
+            transition: width 0.3s ease; /* Adiciona uma transição suave */
+        }
+
+        /* Estilos para as informações do veículo */
+        .informacoes-veiculo {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Estilos para o status do veículo */
+        .status-ligado {
+            color: green;
+        }
+
+        .status-desligado {
+            color: red;
+        }
+
+        /* Estilos para o velocímetro */
+        .velocimetro {
+            width: 100px;
+            height: 50px;
+            border: 1px solid #ccc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ponteiro {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            transform-origin: left center;
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+
+    <!-- Menu de Seleção de Veículos -->
+    <div id="menu-veiculos">
+        <button data-veiculo="carro-base">Carro Base</button>
+        <button data-veiculo="carro-esportivo">Carro Esportivo</button>
+        <button data-veiculo="caminhao">Caminhão</button>
+    </div>
+
+    <!-- Edição de Veículos -->
+    <div id="edicao-veiculo" class="edicao-veiculo">
+        <h2>Editar Veículo</h2>
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo">
+
+        <label for="cor">Cor:</label>
+        <input type="text" id="cor" name="cor">
+
+        <label for="imagem">Imagem:</label>
+        <input type="file" id="imagem" name="imagem">
+
+        <button id="salvar-veiculo">Salvar Veículo</button>
+    </div>
+
+    <!-- Carro Base (Pagani Zonda R) -->
+    <div id="carro-base" class="veiculo-container">
+        <h2>Carro Base</h2>
+        <div id="carro-quadrado">
+            <img id="carro-imagem" src="pagani R.jpg" alt="Imagem do Carro">
+        </div>
+
+        <div class="informacoes-veiculo">
+            <p>Status: <span id="status" class="status-desligado">Desligado</span></p>
+            <p>Velocidade: <span id="velocidade">0</span> km/h</p>
+            <div class="velocimetro">
+                <div id="ponteiro-carro-base" class="ponteiro"></div>
+            </div>
+        </div>
+
+        <div class="barra-aceleracao">
+            <div id="barra-progresso-carro-base" class="barra-progresso"></div>
+        </div>
+
+        <div class="acoes-veiculo">
+            <h3>Ações</h3>
+            <button data-acao="ligar" data-veiculo="meuCarro">Ligar</button>
+            <button data-acao="acelerar" data-veiculo="meuCarro">Acelerar</button>
+            <button data-acao="frear" data-veiculo="meuCarro">Frear</button>
+            <button data-acao="buzinar" data-veiculo="meuCarro">Buzinar</button>
+            <button data-acao="desligar" data-veiculo="meuCarro">Desligar</button>
+        </div>
+    </div>
+
+    <!-- Carro Esportivo -->
+    <div id="carro-esportivo" class="veiculo-container">
+        <h2>Carro Esportivo</h2>
+        <div id="carro-esportivo-quadrado" class="carro-esportivo-quadrado">
+            <img id="carro-esportivo-imagem" src="fcr.webp" alt="">
+        </div>
+
+        <div class="informacoes-veiculo">
+            <p>Status: <span id="status-esportivo" class="status-desligado">Desligado</span></p>
+            <p>Velocidade: <span id="velocidade-esportivo">0</span> km/h</p>
+            <p id="turbo-status">Turbo: Desativado</p>
+            <div class="velocimetro">
+                <div id="ponteiro-carro-esportivo" class="ponteiro"></div>
+            </div>
+        </div>
+
+        <div class="barra-aceleracao">
+            <div id="barra-progresso-carro-esportivo" class="barra-progresso"></div>
+        </div>
+
+        <div class="acoes-veiculo">
+            <h3>Ações</h3>
+            <button data-acao="ligar" data-veiculo="ferrari">Ligar</button>
+            <button data-acao="acelerar" data-veiculo="ferrari">Acelerar</button>
+            <button data-acao="frear" data-veiculo="ferrari">Frear</button>
+            <button data-acao="ativarTurbo" data-veiculo="ferrari">Turbo</button>
+             <button data-acao="buzinar" data-veiculo="ferrari">Buzinar</button>
+            <button data-acao="desligar" data-veiculo="ferrari">Desligar</button>
+        </div>
+    </div>
+
+    <!-- Caminhão -->
+    <div id="caminhao" class="veiculo-container">
+        <h2>Caminhão</h2>
+        <div id="caminhao-quadrado" class="carro-quadrado-caminhão">
+            <img id="caminhao-imagem" src="Scania-30-G.webp" alt="Imagem do Caminhão">
+        </div>
+
+        <div class="informacoes-veiculo">
+            <p>Status: <span id="status-caminhao" class="status-desligado">Desligado</span></p>
+            <p>Velocidade: <span id="velocidade-caminhao">0</span> km/h</p>
+            <p id="carga-status">Carga: 0/10000 kg</p>
+            <div class="velocimetro">
+                <div id="ponteiro-caminhao" class="ponteiro"></div>
+            </div>
+        </div>
+
+        <label for="carga">Carga (kg):</label>
+        <input type="number" id="carga" value="0">
+
+        <div class="barra-aceleracao">
+            <div id="barra-progresso-caminhao" class="barra-progresso"></div>
+        </div>
+
+        <div class="acoes-veiculo">
+            <h3>Ações</h3>
+            <button data-acao="carregar" data-veiculo="scania">Carregar</button>
+            <button data-acao="ligar" data-veiculo="scania">Ligar</button>
+            <button data-acao="acelerar" data-veiculo="scania">Acelerar</button>
+            <button data-acao="frear" data-veiculo="scania">Frear</button>
+            <button data-acao="buzinar" data-veiculo="scania">Buzinar</button>
+            <button data-acao="desligar" data-veiculo="scania">Desligar</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="informacoesVeiculo"></div>
+<audio id="som-ligar" src="som_carro_ligando.mp3"></audio>
+<audio id="som-buzinar" src="buzina.mp3"></audio>
+<audio id="som-acelerar" src="aceleracao.mp3"></audio>
+<audio id="som-frear" src="frear.mp3"></audio>
+<audio id="som-desligar" src="desligar.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>

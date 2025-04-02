@@ -1,0 +1,328 @@
+/* Importação das fontes Poppins e Lato do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@400;700&display=swap');
+
+/* Variáveis de cores sofisticadas */
+:root {
+    --cor-fundo: #f9f9f9; /* Fundo super claro */
+    --cor-primaria: #34495e; /* Textos principais */
+    --cor-secundaria: #2ecc71; /* Destaques e botões */
+    --cor-terciaria: #e67e22; /* Acentos */
+    --cor-borda: #e0e0e0; /* Bordas sutis */
+    --cor-card: #fff; /* Cor dos cards */
+    --sombra-card: rgba(0, 0, 0, 0.07); /* Sombra ultra suave */
+    --gradiente-barra: linear-gradient(to right, #2ecc71, #27ae60); /* Gradiente para a barra de progresso */
+}
+
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-primaria);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#container {
+    width: 100%;
+    max-width: 1024px;
+    background-color: var(--cor-card);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px var(--sombra-card);
+    padding: 45px;
+    margin-bottom: 45px;
+}
+
+/* Estilos para o menu de seleção de veículos */
+#menu-veiculos {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+#menu-veiculos button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: var(--cor-secundaria);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 18px;
+    box-shadow: 0 4px 8px var(--sombra-card);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#menu-veiculos button:hover {
+    background-color: #27ae60;
+    transform: translateY(-3px); /* Efeito de elevação */
+}
+
+/* Estilos para os campos de edição de veículos */
+.edicao-veiculo {
+    margin-bottom: 50px;
+    border: 1px solid var(--cor-borda);
+    padding: 40px;
+    border-radius: 12px;
+    background-color: var(--cor-card);
+    box-shadow: 0 5px 10px var(--sombra-card);
+}
+
+.edicao-veiculo h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: var(--cor-primaria);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.edicao-veiculo label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--cor-primaria);
+    font-weight: 600;
+}
+
+.edicao-veiculo input[type="text"],
+.edicao-veiculo input[type="number"],
+.edicao-veiculo input[type="file"] {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 25px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 17px;
+    transition: border-color 0.3s ease;
+}
+
+.edicao-veiculo input[type="text"]:focus,
+.edicao-veiculo input[type="number"]:focus,
+.edicao-veiculo input[type="file"]:focus {
+    border-color: var(--cor-secundaria);
+    outline: none;
+}
+
+.edicao-veiculo button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: var(--cor-secundaria);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 18px;
+    box-shadow: 0 4px 8px var(--sombra-card);
+    display: block;
+    margin: 40px auto 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.edicao-veiculo button:hover {
+    background-color: #27ae60;
+    transform: translateY(-3px);
+}
+
+/* Estilos para os contêineres de veículos */
+.veiculo-container {
+    background-color: var(--cor-card);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px var(--sombra-card);
+    padding: 40px;
+    margin-bottom: 50px;
+}
+
+.veiculo-container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 34px;
+    margin-bottom: 40px;
+    color: var(--cor-primaria);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estilos para as imagens dos veículos */
+.veiculo-container img {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 5px 10px var(--sombra-card);
+    transition: transform 0.3s ease;
+}
+
+.veiculo-container img:hover {
+    transform: scale(1.03); /* Efeito de zoom sutil */
+}
+
+/* Estilos para as informações dos veículos */
+.informacoes-veiculo {
+    margin-top: 40px;
+    padding: 25px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    background-color: #f5f5f5;
+}
+
+.informacoes-veiculo p {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--cor-primaria);
+}
+
+/* Estilos para a barra de aceleração */
+.barra-aceleracao {
+    width: 100%;
+    height: 35px;
+    background-color: #f0f0f0;
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    margin-top: 40px;
+    overflow: hidden;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.barra-progresso {
+    height: 100%;
+    width: 0;
+    background-image: var(--gradiente-barra); /* Utiliza o gradiente */
+    transition: width 0.6s ease; /* Animação suave */
+}
+
+/* Estilos para a seção de ações dos veículos */
+.acoes-veiculo {
+    margin-top: 50px;
+    padding: 40px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    background-color: var(--cor-card);
+    text-align: center;
+}
+
+.acoes-veiculo h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    margin-bottom: 30px;
+    color: var(--cor-primaria);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.acoes-veiculo button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: var(--cor-terciaria);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 18px;
+    margin: 8px;
+    box-shadow: 0 4px 8px var(--sombra-card);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.acoes-veiculo button:hover {
+    background-color: #d35400;
+    transform: translateY(-3px);
+}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 768px) {
+    #menu-veiculos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #menu-veiculos button {
+        margin-bottom: 20px;
+        width: 80%;
+    }
+
+    .veiculo-container img {
+        max-width: 100%;
+    }
+
+    .edicao-veiculo,
+    .veiculo-container,
+    .acoes-veiculo {
+        padding: 30px;
+    }
+}
+
+/* Estilos para o menu de seleção de veículos */
+#menu-veiculos button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: var(--cor-secundaria);
+    color: white;
+    border: none;
+    padding: 14px 28px; /* Diminui o padding */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px; /* Diminui o tamanho da fonte */
+    box-shadow: 0 4px 8px var(--sombra-card);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estilos para os botões nos campos de edição de veículos */
+.edicao-veiculo button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: var(--cor-secundaria);
+    color: white;
+    border: none;
+    padding: 14px 28px; /* Diminui o padding */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px; /* Diminui o tamanho da fonte */
+    box-shadow: 0 4px 8px var(--sombra-card);
+    display: block;
+    margin: 40px auto 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estilos para os botões de ação dos veículos */
+.acoes-veiculo button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: var(--cor-terciaria);
+    color: white;
+    border: none;
+    padding: 14px 28px; /* Diminui o padding */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px; /* Diminui o tamanho da fonte */
+    margin: 8px;
+    box-shadow: 0 4px 8px var(--sombra-card);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
